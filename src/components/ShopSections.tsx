@@ -57,28 +57,28 @@ const offers = [
 const categories = [
 {
   title: 'Budget tyres',
-  from: 'From £49',
+  from: '',
   image:
   'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80',
   color: 'bg-brand-cream'
 },
 {
   title: 'Premium tyres',
-  from: 'From £89',
+  from: '',
   image:
   'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80',
   color: 'bg-brand-black text-white'
 },
 {
   title: 'EV tyres',
-  from: 'From £99',
+  from: '',
   image:
   'https://images.unsplash.com/photo-1617886322168-72b886573c72?auto=format&fit=crop&w=800&q=80',
   color: 'bg-gray-100'
 },
 {
   title: 'SUV tyres',
-  from: 'From £79',
+  from: '',
   image:
   'https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=800&q=80',
   color: 'bg-brand-lemon/30'
@@ -328,10 +328,7 @@ export function ShopSections() {
             </div>
 
             {/* Micro Interaction Link */}
-            <div className="mt-6 flex items-center gap-1.5 text-xs font-bold text-neutral-900 transition-colors duration-200 group-hover:text-amber-700">
-              <span>Learn more</span>
-              <ArrowRightIcon className="transition-transform duration-200 group-hover:translate-x-0.5" size={12} strokeWidth={2.5} />
-            </div>
+           
           </motion.a>
         );
       })}

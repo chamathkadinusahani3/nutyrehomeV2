@@ -71,7 +71,7 @@ export function AppSection() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="mb-6 font-display text-4xl font-extrabold tracking-tight text-white lg:text-5xl"
             >
-              The Ultimate <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-amber-500">Tyre Companion</span>
+              Everything You Need at<span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-amber-500"> Your Fingertips</span>
             </motion.h2>
 
             <motion.p
