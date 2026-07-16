@@ -128,7 +128,8 @@ export function HeroSearch() {
                 </div>
               }
               {tab === 'size' &&
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                   {[
                   {
                     label: 'Width',
@@ -171,6 +172,17 @@ export function HeroSearch() {
 
                   </label>
                 </div>
+
+                <div className="mt-4 overflow-hidden rounded-2xl border border-gray-100">
+                  <img
+                    src="/tyreref.png"
+                    alt="Where to find your tyre size: width, profile and rim numbers are printed on the tyre sidewall"
+                    className="h-auto w-full object-cover" />
+                  <p className="bg-brand-cream px-4 py-2.5 text-center text-xs font-bold text-brand-black">
+                    Not sure of your size? It's printed on your tyre's sidewall.
+                  </p>
+                </div>
+              </>
               }
               {tab === 'scan' &&
               <div className="rounded-2xl border-2 border-dashed border-brand-light-gold/50 bg-brand-cream p-6 text-center">
