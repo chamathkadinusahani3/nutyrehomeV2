@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { SmartphoneIcon, CheckCircle2Icon } from 'lucide-react';
+import { CheckCircle2Icon } from 'lucide-react';
 
 const features = [
   'Search tyres instantly',
@@ -30,9 +30,9 @@ export function AppSection() {
             className="relative flex justify-center lg:justify-end"
           >
             {/* Phone shell with ultra-precise dark bezel and active amber ring light */}
-            <div className="relative z-10 h-[600px] w-[300px] overflow-hidden rounded-[48px] border-[10px] border-neutral-950 bg-neutral-950 shadow-[0_25px_60px_-15px_rgba(245,158,11,0.25)] ring-1 ring-amber-400/30">
+            <div className="relative z-10 h-[650px] w-[310px] overflow-hidden rounded-[48px] border-[10px] border-neutral-950 bg-neutral-950 shadow-[0_25px_60px_-15px_rgba(245,158,11,0.25)] ring-1 ring-amber-400/30">
               {/* Speaker & camera notch simulation */}
-              <div className="absolute top-0 left-1/2 z-20 h-6 w-32 -translate-x-1/2 rounded-b-2xl bg-neutral-950" />
+              <div className="absolute top-0 left-1/2 z-20 h-6 w-20 -translate-x-1/2 rounded-b-2xl bg-neutral-950" />
 
               <img
                 src="/screen.jpeg"
@@ -52,15 +52,19 @@ export function AppSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
           >
-            {/* Category Icon Badge */}
+            {/* Nutyre App Icon */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-yellow-400 to-amber-500 text-neutral-950 shadow-lg shadow-amber-500/20"
+              className="mb-8 h-16 w-16 overflow-hidden rounded-2xl shadow-lg shadow-amber-500/20 ring-1 ring-amber-400/30"
             >
-              <SmartphoneIcon className="h-7 w-7" />
+              <img
+                src="/applogo.png"
+                alt="Nutyre app icon"
+                className="h-full w-full object-cover"
+              />
             </motion.div>
 
             {/* Title with brand gradient tail */}
@@ -114,16 +118,18 @@ export function AppSection() {
                 href="https://apps.apple.com/lk/app/nutyreuk/id6758754476"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-xl bg-white px-8 py-4 font-bold text-neutral-950 transition-all duration-200 hover:bg-neutral-100 hover:shadow-lg"
+                className="flex items-center gap-3 rounded-xl bg-white px-8 py-4 font-bold text-neutral-950 transition-all duration-200 hover:bg-neutral-100 hover:shadow-lg"
               >
+                <img src="/appstore.jpg" alt="" aria-hidden="true" className="h-6 w-6 rounded-md" />
                 Download on App Store
               </a>
               <a
                 href="https://play.google.com/store/apps/details?id=com.nutyre.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-xl border border-neutral-800 bg-neutral-900/80 px-8 py-4 font-bold text-white backdrop-blur-sm transition-all duration-200 hover:border-amber-500/50 hover:bg-neutral-800"
+                className="flex items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/80 px-8 py-4 font-bold text-white backdrop-blur-sm transition-all duration-200 hover:border-amber-500/50 hover:bg-neutral-800"
               >
+                <img src="/googleplay.png" alt="" aria-hidden="true" className="h-6 w-6" />
                 Get it on Google Play
               </a>
             </motion.div>

@@ -133,14 +133,17 @@ export function HeroSearch() {
                   {[
                   {
                     label: 'Width',
+                    example: '205',
                     options: ['165', '175', '185', '195', '205', '215', '225', '235', '245', '255']
                   },
                   {
                     label: 'Profile',
+                    example: '55',
                     options: ['30', '35', '40', '45', '50', '55', '60', '65', '70']
                   },
                   {
                     label: 'Diameter',
+                    example: '16',
                     options: ['14', '15', '16', '17', '18', '19', '20', '21']
                   }].
                   map((field) =>
@@ -152,7 +155,7 @@ export function HeroSearch() {
                     required
                     defaultValue=""
                     className="h-14 w-full rounded-xl border border-gray-200 bg-white px-3 text-center font-bold focus:border-brand-lemon focus:outline-none">
-                        <option value="" disabled>—</option>
+                        <option value="" disabled>E.g. {field.example}</option>
                         {field.options.map((option) =>
                     <option key={option} value={option}>
                             {option}
@@ -167,7 +170,7 @@ export function HeroSearch() {
                     </span>
                     <input
                     required
-                    placeholder="AL1 1AA"
+                    placeholder="E.g. AL1 1AA"
                     className="h-14 w-full rounded-xl border border-gray-200 px-4 text-center font-bold uppercase focus:border-brand-lemon focus:outline-none" />
 
                   </label>

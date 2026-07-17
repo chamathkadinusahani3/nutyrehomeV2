@@ -150,7 +150,7 @@ export function Footer() {
           </div>
           <div className="flex flex-wrap gap-3">
             <a
-              href="#find-tyres"
+              href="/#find-tyres"
               className="rounded-xl bg-brand-black px-6 py-4 font-extrabold text-white transition hover:bg-white hover:text-brand-black">
 
               Find my tyres

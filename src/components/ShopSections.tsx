@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { AppSection } from './AppSection';
 import {
   ArrowRightIcon,
   BatteryChargingIcon,
   CarFrontIcon,
+  CheckCircle2Icon,
   CheckIcon,
   FuelIcon,
   HeartIcon,
@@ -14,9 +15,72 @@ import {
   SearchIcon,
   SlidersHorizontalIcon,
   StarIcon,
-  WrenchIcon } from
+  WrenchIcon,
+  XIcon } from
 'lucide-react';
-const brandLogos = [
+
+const services = [
+{
+  title: 'Wheel alignment',
+  icon: SlidersHorizontalIcon,
+  description: "Poor alignment causes uneven tyre wear and pulls your steering off-centre. Our precision laser alignment gets your wheels tracking true again.",
+  items: ['Laser-guided precision alignment', 'Improves fuel efficiency', 'Extends tyre lifespan', 'Takes around 45 minutes']
+},
+{
+  title: 'Brake repair',
+  icon: ShieldCheckIcon,
+  description: 'From worn pads to warped discs, our technicians inspect and repair your braking system so you can stop with confidence.',
+  items: ['Full brake pad & disc inspection', 'Genuine and OEM-equivalent parts', 'Brake fluid check included', 'Same-day fitting available']
+},
+{
+  title: 'Battery replacement',
+  icon: BatteryChargingIcon,
+  description: "A failing battery rarely gives much warning. We test your battery's health and fit a reliable replacement on the spot.",
+  items: ['Free battery health check', 'Wide range of battery brands', 'Old battery responsibly recycled', 'Mobile fitting available']
+},
+{
+  title: 'Vehicle servicing',
+  icon: WrenchIcon,
+  description: 'Routine maintenance keeps your car running smoothly and protects your warranty. Choose interim, full, or manufacturer-scheduled servicing.',
+  items: ['Interim, full & major service options', 'Fully qualified technicians', 'Digital service report', 'Manufacturer warranty safe']
+},
+{
+  title: 'Oil & filters',
+  icon: FuelIcon,
+  description: 'Clean oil and filters are essential for engine health. We use the correct grade oil for your vehicle, every time.',
+  items: ['Manufacturer-approved oil grades', 'Oil, air & cabin filter options', 'Disposal of old oil included', 'Usually completed within the hour']
+},
+{
+  title: 'Puncture repair',
+  icon: CarFrontIcon,
+  description: "A repairable puncture doesn't always mean a new tyre. We assess the damage and repair safely wherever possible.",
+  items: ['Repaired to British Standard BS AU 159', 'Free puncture inspection', 'Mobile callout available', 'New tyre fitted if unrepairable']
+},
+{
+  title: 'TPMS',
+  icon: CheckIcon,
+  description: 'Tyre Pressure Monitoring System warning light on? We diagnose and reset or replace faulty sensors to keep you road-legal and safe.',
+  items: ['Sensor diagnostics & reset', 'Replacement sensors in stock', 'Works with all major TPMS types', 'Quick turnaround']
+},
+{
+  title: 'Air conditioning',
+  icon: PlusIcon,
+  description: 'Lost your cool? We re-gas, leak-test and service your air con system to get cold air flowing again.',
+  items: ['Full re-gas service', 'Leak detection included', 'Antibacterial treatment available', 'Most cars done in 30 minutes']
+},
+{
+  title: 'Diagnostics',
+  icon: SearchIcon,
+  description: "Dashboard warning light on? Our diagnostic scan reads your vehicle's fault codes so we can pinpoint the issue fast.",
+  items: ['Full ECU fault code scan', 'Covers engine, ABS & airbag systems', 'Clear, jargon-free report', 'No obligation quote afterwards']
+},
+{
+  title: 'Suspension',
+  icon: WrenchIcon,
+  description: 'Knocks, clunks or a bumpy ride? We inspect shocks, struts and bushes to restore comfort, control and safety.',
+  items: ['Full suspension health check', 'Shocks, struts & bushes covered', 'Improves handling & comfort', 'Parts and labour guaranteed']
+}];
+export const brandLogos = [
 { name: 'Michelin', logo: '/logo/michelin.jpg' },
 { name: 'Pirelli', logo: '/logo/pirelli.jpg' },
 { name: 'Bridgestone', logo: '/logo/bridgestone.jpg' },
@@ -114,6 +178,7 @@ export function ShopSections() {
   const [saved, setSaved] = useState<string[]>([]);
   const [compared, setCompared] = useState<string[]>([]);
   const [basket, setBasket] = useState<string[]>([]);
+  const [openService, setOpenService] = useState<number | null>(null);
   const toggle = (
   name: string,
   state: string[],
@@ -124,6 +189,18 @@ export function ShopSections() {
     state.filter((item) => item !== name) :
     [...state, name]
   );
+
+  useEffect(() => {
+    if (openService === null) return;
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') setOpenService(null);
+    }
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [openService]);
+
+  const activeService = openService === null ? null : services[openService];
+
   return (
     <main>
       
@@ -289,32 +366,21 @@ export function ShopSections() {
 
     {/* Modern Services Grid Block */}
     <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-      {[
-        ['Wheel alignment', SlidersHorizontalIcon],
-        ['Brake repair', ShieldCheckIcon],
-        ['Battery replacement', BatteryChargingIcon],
-        ['Vehicle servicing', WrenchIcon],
-        ['Oil & filters', FuelIcon],
-        ['Puncture repair', CarFrontIcon],
-        ['TPMS', CheckIcon],
-        ['Air conditioning', PlusIcon],
-        ['Diagnostics', SearchIcon],
-        ['Suspension', WrenchIcon]
-      ].map(([title, Icon], index) => {
-        const ServiceIcon = Icon;
+      {services.map((service, index) => {
+        const ServiceIcon = service.icon;
         return (
-          <motion.a
+          <motion.button
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: index * 0.05 }}
-            key={title as string}
-            href="#contact"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/60 bg-white/70 p-5 backdrop-blur-md shadow-[0_8px_30px_rgba(245,158,11,0.02)] transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/50 hover:bg-white hover:shadow-[0_20px_40px_rgba(245,158,11,0.08)]"
+            key={service.title}
+            onClick={() => setOpenService(index)}
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/60 bg-white/70 p-5 text-left backdrop-blur-md shadow-[0_8px_30px_rgba(245,158,11,0.02)] transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/50 hover:bg-white hover:shadow-[0_20px_40px_rgba(245,158,11,0.08)]"
           >
             {/* Permanent brand accent line pinned to the top of each card */}
             <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-yellow-400 via-amber-400 to-amber-500" />
-            
+
             <div>
               {/* Icon Block: Ultra-clean solid black block transforming to warm gold */}
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-neutral-950 text-white shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:bg-amber-500 group-hover:shadow-amber-500/20">
@@ -323,18 +389,87 @@ export function ShopSections() {
 
               {/* Service Title */}
               <h3 className="mt-5 text-sm font-bold tracking-tight text-neutral-900 capitalize leading-snug">
-                {title as string}
+                {service.title}
               </h3>
+              <span className="mt-3 inline-flex items-center text-xs font-bold text-gray-500 transition-colors group-hover:text-amber-700">
+                  Learn more <ArrowRightIcon className="ml-1" size={14} />
+                </span>
             </div>
-
-            {/* Micro Interaction Link */}
-           
-          </motion.a>
+          </motion.button>
         );
       })}
     </div>
   </div>
 </section>
+
+<AnimatePresence>
+  {activeService &&
+  <motion.div
+    key="service-modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-label={activeService.title}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.2 }}
+    onClick={() => setOpenService(null)}
+    className="fixed inset-0 z-[1000] flex items-center justify-center bg-neutral-950/75 p-4 backdrop-blur-sm">
+
+      <motion.div
+      key="service-modal-panel"
+      initial={{ opacity: 0, y: 24, scale: 0.96 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 16, scale: 0.97 }}
+      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+      onClick={(event) => event.stopPropagation()}
+      className="relative max-h-[88vh] w-full max-w-md overflow-y-auto rounded-3xl bg-white p-7 shadow-2xl sm:p-8">
+
+        <button
+        onClick={() => setOpenService(null)}
+        aria-label="Close"
+        className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full bg-gray-100 text-neutral-900 transition hover:bg-amber-400">
+
+          <XIcon size={18} />
+        </button>
+
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-neutral-950 text-amber-400 shadow-sm">
+          <activeService.icon size={26} strokeWidth={1.75} />
+        </div>
+
+        <h3 className="mt-5 text-2xl font-extrabold capitalize tracking-tight text-neutral-900">
+          {activeService.title}
+        </h3>
+        <p className="mt-3 text-sm leading-7 text-gray-600">
+          {activeService.description}
+        </p>
+
+        <ul className="mt-5 space-y-1.5">
+          {activeService.items.map((item) =>
+        <li
+          key={item}
+          className="flex items-start gap-3 rounded-xl px-3 py-2 text-sm font-semibold text-neutral-900 transition-colors hover:bg-amber-50">
+
+              <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-amber-100">
+                <CheckCircle2Icon size={14} className="text-amber-600" />
+              </span>
+              {item}
+            </li>
+        )}
+        </ul>
+
+        <a
+        href="/#contact"
+        onClick={() => setOpenService(null)}
+        className="mt-7 flex items-center justify-center gap-2 rounded-xl bg-neutral-950 py-3.5 text-sm font-extrabold uppercase tracking-wide text-white transition-all duration-300 hover:bg-amber-500">
+
+          Book this service
+          <ArrowRightIcon size={16} />
+        </a>
+      </motion.div>
+    </motion.div>
+  }
+</AnimatePresence>
 
     </main>);
 
