@@ -142,7 +142,7 @@ export function HeroSearch() {
                     options: ['30', '35', '40', '45', '50', '55', '60', '65', '70']
                   },
                   {
-                    label: 'Diameter',
+                    label: 'Rim',
                     example: '16',
                     options: ['14', '15', '16', '17', '18', '19', '20', '21']
                   }].
