@@ -67,6 +67,20 @@ export function AppSection() {
               />
             </motion.div>
 
+            {/* Brand Name */}
+              <div>
+                <h3 className="font-display text-2xl font-bold tracking-tight text-white">
+                  Nutyre
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-amber-500">
+                    UK
+                  </span>
+                </h3>
+                <p className="text-sm text-neutral-400">
+                  Mobile App
+                </p>
+              </div>
+
+
             {/* Title with brand gradient tail */}
             <motion.h2
               initial={{ opacity: 0, y: 20 }}

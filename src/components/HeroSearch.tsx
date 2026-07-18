@@ -95,7 +95,7 @@ export function HeroSearch() {
                   setTab(item.id);
                   setSubmitted(false);
                 }}
-                className={`flex flex-1 items-center justify-center gap-1.5 rounded-xl px-2 py-3 text-xs font-bold sm:text-sm ${tab === item.id ? 'bg-brand-cream text-brand-black' : 'text-gray-500 hover:text-brand-black'}`}>
+                className={`flex flex-1 items-center justify-center gap-1.5 rounded-xl px-2 py-3 text-xs font-bold transition-all sm:text-sm ${tab === item.id ? 'bg-brand-yellow text-brand-black shadow-md scale-[1.02]' : 'text-gray-500 hover:bg-gray-50 hover:text-brand-black'}`}>
 
                   {item.id === 'scan' && <CameraIcon size={15} />}
                   {item.label}
