@@ -122,29 +122,25 @@ const categories = [
 {
   title: 'Budget tyres',
   from: '',
-  image:
-  'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80',
+  image: '/Budgettyres.png',
   color: 'bg-brand-cream'
 },
 {
   title: 'Premium tyres',
   from: '',
-  image:
-  'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80',
+  image: '/Premiumtyres.png',
   color: 'bg-brand-black text-white'
 },
 {
   title: 'EV tyres',
   from: '',
-  image:
-  'https://images.unsplash.com/photo-1617886322168-72b886573c72?auto=format&fit=crop&w=800&q=80',
+  image: '/EVtyres.png',
   color: 'bg-gray-100'
 },
 {
   title: 'SUV tyres',
   from: '',
-  image:
-  'https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=800&q=80',
+  image: '/SUVtyres.png',
   color: 'bg-brand-lemon/30'
 }];
 
@@ -278,37 +274,34 @@ export function ShopSections() {
           transition={{ duration: 0.5, delay: index * 0.08 }}
           whileHover={{ y: -6 }}
           key={category.title}
-          className="group relative min-h-[300px] flex flex-col justify-between overflow-hidden rounded-2xl border border-white/60 bg-white/70 p-6 backdrop-blur-md shadow-[0_8px_30px_rgba(245,158,11,0.02)] transition-all duration-300 hover:border-amber-400/50 hover:bg-white hover:shadow-[0_20px_40px_rgba(245,158,11,0.08)]"
+          className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/60 bg-white shadow-[0_8px_30px_rgba(245,158,11,0.02)] transition-all duration-300 hover:border-amber-400/50 hover:shadow-[0_20px_40px_rgba(245,158,11,0.08)]"
         >
-          {/* Top orange/yellow brand border bar */}
-          <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-yellow-400 via-amber-400 to-amber-500" />
-          
-          {/* Background Category Image Overlay */}
-          <div className="absolute inset-0 -z-10 overflow-hidden">
+          {/* Category photo */}
+          <div className="relative h-48 overflow-hidden">
             <img
               src={category.image}
               alt=""
-              className="h-full w-full object-cover opacity-[0.06] grayscale filter mix-blend-multiply transition duration-500 group-hover:scale-110 group-hover:opacity-[0.12]"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
-          </div>
-
-          {/* Top row badge layout */}
-          <div className="flex items-start justify-between">
-            <span className="rounded-md bg-neutral-950 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-widest text-white border border-neutral-800">
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-neutral-950/5 to-transparent" />
+            <span className="absolute left-4 top-4 rounded-md bg-neutral-950 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-widest text-white border border-neutral-800">
               Shop now
             </span>
           </div>
 
           {/* Typography Content and Action elements */}
-          <div className="mt-auto">
-            <h3 className="text-2xl font-bold tracking-tight text-neutral-900 capitalize">
-              {category.title}
-            </h3>
-            
-            <p className="mt-1 text-sm font-medium text-neutral-500">
-              {category.from}
-            </p>
-            
+          <div className="flex flex-1 flex-col justify-between p-6">
+            <div>
+              <h3 className="text-2xl font-bold tracking-tight text-neutral-900 capitalize">
+                {category.title}
+              </h3>
+              {category.from &&
+              <p className="mt-1 text-sm font-medium text-neutral-500">
+                  {category.from}
+                </p>
+              }
+            </div>
+
             <a
               href="#find-tyres"
               className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-neutral-950 transition-colors duration-200 group-hover:text-amber-700"
