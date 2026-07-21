@@ -1,82 +1,98 @@
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { AppSection } from './AppSection';
 import {
   ArrowRightIcon,
   BatteryChargingIcon,
   CarFrontIcon,
-  CheckCircle2Icon,
   CheckIcon,
   FuelIcon,
-  HeartIcon,
   PlusIcon,
   ShieldCheckIcon,
-  ShoppingBagIcon,
   SearchIcon,
   SlidersHorizontalIcon,
-  StarIcon,
-  WrenchIcon,
-  XIcon } from
+  WrenchIcon } from
 'lucide-react';
 
-const services = [
+export const services = [
 {
+  slug: 'wheel-alignment',
   title: 'Wheel alignment',
   icon: SlidersHorizontalIcon,
+  price: 45,
   description: "Poor alignment causes uneven tyre wear and pulls your steering off-centre. Our precision laser alignment gets your wheels tracking true again.",
   items: ['Laser-guided precision alignment', 'Improves fuel efficiency', 'Extends tyre lifespan', 'Takes around 45 minutes']
 },
 {
+  slug: 'brake-repair',
   title: 'Brake repair',
   icon: ShieldCheckIcon,
+  price: 120,
   description: 'From worn pads to warped discs, our technicians inspect and repair your braking system so you can stop with confidence.',
   items: ['Full brake pad & disc inspection', 'Genuine and OEM-equivalent parts', 'Brake fluid check included', 'Same-day fitting available']
 },
 {
+  slug: 'battery-replacement',
   title: 'Battery replacement',
   icon: BatteryChargingIcon,
+  price: 90,
   description: "A failing battery rarely gives much warning. We test your battery's health and fit a reliable replacement on the spot.",
   items: ['Free battery health check', 'Wide range of battery brands', 'Old battery responsibly recycled', 'Mobile fitting available']
 },
 {
+  slug: 'vehicle-servicing',
   title: 'Vehicle servicing',
   icon: WrenchIcon,
+  price: 149,
   description: 'Routine maintenance keeps your car running smoothly and protects your warranty. Choose interim, full, or manufacturer-scheduled servicing.',
   items: ['Interim, full & major service options', 'Fully qualified technicians', 'Digital service report', 'Manufacturer warranty safe']
 },
 {
+  slug: 'oil-filters',
   title: 'Oil & filters',
   icon: FuelIcon,
+  price: 69,
   description: 'Clean oil and filters are essential for engine health. We use the correct grade oil for your vehicle, every time.',
   items: ['Manufacturer-approved oil grades', 'Oil, air & cabin filter options', 'Disposal of old oil included', 'Usually completed within the hour']
 },
 {
+  slug: 'puncture-repair',
   title: 'Puncture repair',
   icon: CarFrontIcon,
+  price: 25,
   description: "A repairable puncture doesn't always mean a new tyre. We assess the damage and repair safely wherever possible.",
   items: ['Repaired to British Standard BS AU 159', 'Free puncture inspection', 'Mobile callout available', 'New tyre fitted if unrepairable']
 },
 {
+  slug: 'tpms',
   title: 'TPMS',
   icon: CheckIcon,
+  price: 35,
   description: 'Tyre Pressure Monitoring System warning light on? We diagnose and reset or replace faulty sensors to keep you road-legal and safe.',
   items: ['Sensor diagnostics & reset', 'Replacement sensors in stock', 'Works with all major TPMS types', 'Quick turnaround']
 },
 {
+  slug: 'air-conditioning',
   title: 'Air conditioning',
   icon: PlusIcon,
+  price: 59,
   description: 'Lost your cool? We re-gas, leak-test and service your air con system to get cold air flowing again.',
   items: ['Full re-gas service', 'Leak detection included', 'Antibacterial treatment available', 'Most cars done in 30 minutes']
 },
 {
+  slug: 'diagnostics',
   title: 'Diagnostics',
   icon: SearchIcon,
+  price: 49,
   description: "Dashboard warning light on? Our diagnostic scan reads your vehicle's fault codes so we can pinpoint the issue fast.",
   items: ['Full ECU fault code scan', 'Covers engine, ABS & airbag systems', 'Clear, jargon-free report', 'No obligation quote afterwards']
 },
 {
+  slug: 'suspension',
   title: 'Suspension',
   icon: WrenchIcon,
+  price: 110,
   description: 'Knocks, clunks or a bumpy ride? We inspect shocks, struts and bushes to restore comfort, control and safety.',
   items: ['Full suspension health check', 'Shocks, struts & bushes covered', 'Improves handling & comfort', 'Parts and labour guaranteed']
 }];
@@ -142,6 +158,12 @@ const categories = [
   from: '',
   image: '/SUVtyres.png',
   color: 'bg-brand-lemon/30'
+},
+{
+  title: 'Run flat tyres',
+  from: '',
+  image: '/runflat.png',
+  color: 'bg-gray-100'
 }];
 
 const products = [
@@ -174,7 +196,6 @@ export function ShopSections() {
   const [saved, setSaved] = useState<string[]>([]);
   const [compared, setCompared] = useState<string[]>([]);
   const [basket, setBasket] = useState<string[]>([]);
-  const [openService, setOpenService] = useState<number | null>(null);
   const toggle = (
   name: string,
   state: string[],
@@ -185,17 +206,6 @@ export function ShopSections() {
     state.filter((item) => item !== name) :
     [...state, name]
   );
-
-  useEffect(() => {
-    if (openService === null) return;
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === 'Escape') setOpenService(null);
-    }
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [openService]);
-
-  const activeService = openService === null ? null : services[openService];
 
   return (
     <main>
@@ -265,7 +275,7 @@ export function ShopSections() {
     </motion.div>
 
     {/* Elegant Deal Grid */}
-    <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {categories.map((category, index) => (
         <motion.article
           initial={{ opacity: 0, y: 24 }}
@@ -362,107 +372,41 @@ export function ShopSections() {
       {services.map((service, index) => {
         const ServiceIcon = service.icon;
         return (
-          <motion.button
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: index * 0.05 }}
             key={service.title}
-            onClick={() => setOpenService(index)}
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/60 bg-white/70 p-5 text-left backdrop-blur-md shadow-[0_8px_30px_rgba(245,158,11,0.02)] transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/50 hover:bg-white hover:shadow-[0_20px_40px_rgba(245,158,11,0.08)]"
           >
-            {/* Permanent brand accent line pinned to the top of each card */}
-            <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-yellow-400 via-amber-400 to-amber-500" />
+            <Link
+              to={`/services/${service.slug}`}
+              className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-white/60 bg-white/70 p-5 text-left backdrop-blur-md shadow-[0_8px_30px_rgba(245,158,11,0.02)] transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/50 hover:bg-white hover:shadow-[0_20px_40px_rgba(245,158,11,0.08)]"
+            >
+              {/* Permanent brand accent line pinned to the top of each card */}
+              <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-yellow-400 via-amber-400 to-amber-500" />
 
-            <div>
-              {/* Icon Block: Ultra-clean solid black block transforming to warm gold */}
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-neutral-950 text-white shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:bg-amber-500 group-hover:shadow-amber-500/20">
-                <ServiceIcon size={20} strokeWidth={1.75} />
+              <div>
+                {/* Icon Block: Ultra-clean solid black block transforming to warm gold */}
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-neutral-950 text-white shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:bg-amber-500 group-hover:shadow-amber-500/20">
+                  <ServiceIcon size={20} strokeWidth={1.75} />
+                </div>
+
+                {/* Service Title */}
+                <h3 className="mt-5 text-sm font-bold tracking-tight text-neutral-900 capitalize leading-snug">
+                  {service.title}
+                </h3>
+                <span className="mt-3 inline-flex items-center text-xs font-bold text-gray-500 transition-colors group-hover:text-amber-700">
+                    Learn more <ArrowRightIcon className="ml-1" size={14} />
+                  </span>
               </div>
-
-              {/* Service Title */}
-              <h3 className="mt-5 text-sm font-bold tracking-tight text-neutral-900 capitalize leading-snug">
-                {service.title}
-              </h3>
-              <span className="mt-3 inline-flex items-center text-xs font-bold text-gray-500 transition-colors group-hover:text-amber-700">
-                  Learn more <ArrowRightIcon className="ml-1" size={14} />
-                </span>
-            </div>
-          </motion.button>
+            </Link>
+          </motion.div>
         );
       })}
     </div>
   </div>
 </section>
-
-<AnimatePresence>
-  {activeService &&
-  <motion.div
-    key="service-modal-backdrop"
-    role="dialog"
-    aria-modal="true"
-    aria-label={activeService.title}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: 0.2 }}
-    onClick={() => setOpenService(null)}
-    className="fixed inset-0 z-[1000] flex items-center justify-center bg-neutral-950/75 p-4 backdrop-blur-sm">
-
-      <motion.div
-      key="service-modal-panel"
-      initial={{ opacity: 0, y: 24, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: 16, scale: 0.97 }}
-      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-      onClick={(event) => event.stopPropagation()}
-      className="relative max-h-[88vh] w-full max-w-md overflow-y-auto rounded-3xl bg-white p-7 shadow-2xl sm:p-8">
-
-        <button
-        onClick={() => setOpenService(null)}
-        aria-label="Close"
-        className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full bg-gray-100 text-neutral-900 transition hover:bg-amber-400">
-
-          <XIcon size={18} />
-        </button>
-
-        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-neutral-950 text-amber-400 shadow-sm">
-          <activeService.icon size={26} strokeWidth={1.75} />
-        </div>
-
-        <h3 className="mt-5 text-2xl font-extrabold capitalize tracking-tight text-neutral-900">
-          {activeService.title}
-        </h3>
-        <p className="mt-3 text-sm leading-7 text-gray-600">
-          {activeService.description}
-        </p>
-
-        <ul className="mt-5 space-y-1.5">
-          {activeService.items.map((item) =>
-        <li
-          key={item}
-          className="flex items-start gap-3 rounded-xl px-3 py-2 text-sm font-semibold text-neutral-900 transition-colors hover:bg-amber-50">
-
-              <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-amber-100">
-                <CheckCircle2Icon size={14} className="text-amber-600" />
-              </span>
-              {item}
-            </li>
-        )}
-        </ul>
-
-        <a
-        href="/#contact"
-        onClick={() => setOpenService(null)}
-        className="mt-7 flex items-center justify-center gap-2 rounded-xl bg-neutral-950 py-3.5 text-sm font-extrabold uppercase tracking-wide text-white transition-all duration-300 hover:bg-amber-500">
-
-          Book this service
-          <ArrowRightIcon size={16} />
-        </a>
-      </motion.div>
-    </motion.div>
-  }
-</AnimatePresence>
 
     </main>);
 

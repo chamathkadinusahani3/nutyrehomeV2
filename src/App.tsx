@@ -5,6 +5,9 @@ import { HeroSearch } from './components/HeroSearch';
 import { ShopSections } from './components/ShopSections';
 import { TrustSections } from './components/TrustSections';
 import { BrandsPage } from './components/BrandsPage';
+import { ServicesPage } from './components/ServicesPage';
+import { ServiceDetailPage } from './components/ServiceDetailPage';
+import { BookingPage } from './components/BookingPage';
 
 function HomePage() {
   return (
@@ -24,6 +27,9 @@ export function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/brands" element={<BrandsPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:slug" element={<ServiceDetailPage />} />
+          <Route path="/book/:slug" element={<BookingPage />} />
         </Routes>
      
       </div>

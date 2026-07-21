@@ -11,7 +11,7 @@ const links = [
 { label: 'Home', to: '/' },
 { label: 'Tyres', to: '/#featured-tyres' },
 { label: 'Mobile Fitting', to: '/#mobile-fitting' },
-{ label: 'Services', to: '/#services' },
+{ label: 'Services', to: '/services' },
 { label: 'Offers', to: '/#offers' },
 { label: 'Brands', to: '/brands' },
 { label: 'About', to: '/#about' },
@@ -61,7 +61,7 @@ export function Header() {
             className="flex items-center"
             aria-label="Nutyre home">
 
-            <img src="/lolo.png" alt="Nutyre" className="h-11 w-auto object-contain" />
+            <img src="/lolo.png" alt="Nutyre" className="h-12 w-auto object-contain" />
           </a>
 
           <div className="hidden items-center gap-6 lg:flex">

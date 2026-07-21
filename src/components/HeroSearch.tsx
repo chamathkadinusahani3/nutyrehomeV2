@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import {
   ArrowRightIcon,
   CameraIcon,
+  CarFrontIcon,
   CheckCircle2Icon,
   MapPinIcon,
   SearchIcon,
@@ -67,7 +68,7 @@ export function HeroSearch() {
             className="mt-9 overflow-hidden rounded-[24px] bg-white shadow-[0_24px_60px_rgba(72,53,0,0.14)] ring-1 ring-brand-light-gold/20">
 
             <div
-              className="flex border-b border-gray-100 p-2"
+              className="flex gap-2 border-b border-gray-100 p-3"
               role="tablist"
               aria-label="Tyre search method">
 
@@ -95,7 +96,7 @@ export function HeroSearch() {
                   setTab(item.id);
                   setSubmitted(false);
                 }}
-                className={`flex flex-1 items-center justify-center gap-1.5 rounded-xl px-2 py-3 text-xs font-bold transition-all sm:text-sm ${tab === item.id ? 'bg-brand-yellow text-brand-black shadow-md scale-[1.02]' : 'text-gray-500 hover:bg-gray-50 hover:text-brand-black'}`}>
+                className={`flex flex-1 items-center justify-center gap-1.5 rounded-xl border-2 px-2 py-3 text-xs font-bold transition-all sm:text-sm ${tab === item.id ? 'border-brand-yellow bg-brand-yellow text-brand-black shadow-md scale-[1.02]' : 'border-gray-200 text-gray-500 hover:border-brand-light-gold hover:bg-gray-50 hover:text-brand-black'}`}>
 
                   {item.id === 'scan' && <CameraIcon size={15} />}
                   {item.label}
@@ -109,11 +110,18 @@ export function HeroSearch() {
                     <span className="mb-2 block text-xs font-bold text-gray-600">
                       Vehicle registration
                     </span>
-                    <input
-                    required
-                    placeholder="e.g. AB12 CDE"
-                    className="h-14 w-full rounded-xl border-2 border-brand-yellow bg-brand-yellow px-4 font-mono text-xl font-extrabold uppercase tracking-widest text-brand-black placeholder:text-brand-black/60 focus:outline-none focus:ring-4 focus:ring-brand-yellow/25" />
+                    <div className="flex h-14 w-full overflow-hidden rounded-xl border-2 border-brand-yellow focus-within:ring-4 focus-within:ring-brand-yellow/25">
+                      <span className="flex shrink-0 items-center gap-1.5 bg-brand-yellow px-3">
+                        <CarFrontIcon size={18} className="text-brand-black" />
+                        <img src="/gb.png" alt="" aria-hidden="true" className="h-4 w-4 rounded-full object-cover" />
+                        <span className="text-sm font-extrabold text-brand-black">GB</span>
+                      </span>
+                      <input
+                      required
+                      placeholder="ENTER REG"
+                      className="h-full w-full min-w-0 bg-white px-4 font-mono text-xl font-extrabold uppercase tracking-widest text-brand-black placeholder:text-gray-400 focus:outline-none" />
 
+                    </div>
                   </label>
                   <label className="block">
                     <span className="mb-2 block text-xs font-bold text-gray-600">
@@ -121,7 +129,7 @@ export function HeroSearch() {
                     </span>
                     <input
                     required
-                    placeholder="AL1 1AA"
+                    placeholder="e.g. AL1 1AA"
                     className="h-14 w-full rounded-xl border border-gray-200 px-4 font-bold uppercase focus:border-brand-lemon focus:outline-none focus:ring-4 focus:ring-brand-yellow/20" />
 
                   </label>
@@ -155,7 +163,7 @@ export function HeroSearch() {
                     required
                     defaultValue=""
                     className="h-14 w-full rounded-xl border border-gray-200 bg-white px-3 text-center font-bold focus:border-brand-lemon focus:outline-none">
-                        <option value="" disabled>E.g. {field.example}</option>
+                        <option value="" disabled>e.g. {field.example}</option>
                         {field.options.map((option) =>
                     <option key={option} value={option}>
                             {option}
@@ -170,7 +178,7 @@ export function HeroSearch() {
                     </span>
                     <input
                     required
-                    placeholder="E.g. AL1 1AA"
+                    placeholder="e.g. AL1 1AA"
                     className="h-14 w-full rounded-xl border border-gray-200 px-4 text-center font-bold uppercase focus:border-brand-lemon focus:outline-none" />
 
                   </label>
@@ -251,68 +259,8 @@ export function HeroSearch() {
       </div>
 
       {/* Floating info badges, pinned to the hero's corners over the video. */}
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: -10
-        }}
-        animate={{
-          opacity: 1,
-          y: [0, -8, 0]
-        }}
-        transition={{
-          opacity: {
-            duration: 0.6,
-            delay: 0.4
-          },
-          y: {
-            repeat: Infinity,
-            duration: 3.5,
-            delay: 0.4
-          }
-        }}
-        className="absolute right-5 top-6 hidden items-center gap-3 rounded-2xl bg-white/95 p-4 shadow-xl lg:flex">
-
-        <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-cream">
-          <WrenchIcon className="text-brand-black" size={20} />
-        </span>
-        <div>
-          <p className="text-xs font-bold text-gray-500">Mobile fitting</p>
-          <p className="font-extrabold text-brand-black">At your doorstep</p>
-        </div>
-      </motion.div>
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 10
-        }}
-        animate={{
-          opacity: 1,
-          y: [0, 8, 0]
-        }}
-        transition={{
-          opacity: {
-            duration: 0.6,
-            delay: 0.5
-          },
-          y: {
-            repeat: Infinity,
-            duration: 4.2,
-            delay: 0.5
-          }
-        }}
-        className="absolute bottom-6 right-5 hidden rounded-2xl bg-brand-yellow p-4 shadow-xl lg:block">
-
-        <p className="text-xs font-bold uppercase tracking-wider text-brand-black">
-          Available today
-        </p>
-        <p className="font-display text-2xl font-extrabold text-brand-black">
-          Same day
-        </p>
-        <div className="mt-1 flex items-center gap-1 text-xs font-bold">
-          <MapPinIcon size={13} /> Hertfordshire
-        </div>
-      </motion.div>
+      
+    
     </section>);
 
 }
