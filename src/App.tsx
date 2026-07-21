@@ -8,6 +8,8 @@ import { BrandsPage } from './components/BrandsPage';
 import { ServicesPage } from './components/ServicesPage';
 import { ServiceDetailPage } from './components/ServiceDetailPage';
 import { BookingPage } from './components/BookingPage';
+import { BlogPage } from './components/BlogPage';
+import { BlogArticlePage } from './components/BlogArticlePage';
 
 function HomePage() {
   return (
@@ -30,6 +32,8 @@ export function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           <Route path="/book/:slug" element={<BookingPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogArticlePage />} />
         </Routes>
      
       </div>

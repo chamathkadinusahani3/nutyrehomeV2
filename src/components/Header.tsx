@@ -15,7 +15,7 @@ const links = [
 { label: 'Offers', to: '/#offers' },
 { label: 'Brands', to: '/brands' },
 { label: 'About', to: '/#about' },
-{ label: 'Blog', to: '/#blog' },
+{ label: 'Blog', to: '/blog' },
 { label: 'Contact', to: '/#contact' }];
 
 export function Header() {

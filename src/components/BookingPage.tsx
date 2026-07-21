@@ -15,7 +15,7 @@ import { services } from './ShopSections';
 
 const stepLabels = ['Vehicle', 'Schedule', 'Pricing', 'Your details', 'Payment'];
 
-const vehicleTypes = ['Car', 'SUV / 4x4', 'Van', 'Motorbike'];
+const vehicleTypes = ['Car', 'SUV / 4x4', 'Van'];
 const timeSlots = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'];
 const currentYear = new Date().getFullYear();
 const years = Array.from({ length: 25 }, (_, i) => String(currentYear - i));

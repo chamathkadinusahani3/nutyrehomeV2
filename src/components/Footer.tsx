@@ -2,14 +2,61 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowUpIcon,
+  Building2Icon,
+  ClockIcon,
   FacebookIcon,
   InstagramIcon,
+  LinkedinIcon,
   MailIcon,
   MapPinIcon,
   MessageCircleIcon,
   PhoneIcon,
   SendIcon } from
 'lucide-react';
+
+function TiktokIcon({ size = 18 }: {size?: number;}) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M16.6 5.82c-1.05-.9-1.69-2.14-1.79-3.51h-3.02v13.6c0 1.44-1.17 2.61-2.61 2.61a2.61 2.61 0 0 1 0-5.22c.27 0 .53.04.78.11V10.4a5.68 5.68 0 0 0-.78-.05A5.66 5.66 0 0 0 3.5 16.01a5.66 5.66 0 0 0 5.68 5.66 5.66 5.66 0 0 0 5.68-5.66V9.02a8.28 8.28 0 0 0 4.83 1.55V7.57c-1.05 0-2.02-.34-2.8-.97l-.29-.23z" />
+    </svg>);
+
+}
+
+function GoogleReviewsBadge() {
+  return (
+    <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2">
+      <svg width={18} height={18} viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.63h6.47a5.54 5.54 0 0 1-2.4 3.63v3h3.87c2.27-2.09 3.58-5.17 3.58-8.81z" />
+        <path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.94-2.92l-3.87-3c-1.08.72-2.45 1.15-4.07 1.15-3.13 0-5.78-2.11-6.73-4.96H1.28v3.11A12 12 0 0 0 12 24z" />
+        <path fill="#FBBC05" d="M5.27 14.27a7.2 7.2 0 0 1 0-4.54v-3.1H1.28a12 12 0 0 0 0 10.75z" />
+        <path fill="#EA4335" d="M12 4.77c1.76 0 3.34.6 4.58 1.79l3.44-3.44C17.95 1.19 15.24 0 12 0A12 12 0 0 0 1.28 6.63l3.99 3.1C6.22 6.88 8.87 4.77 12 4.77z" />
+      </svg>
+      <div className="leading-tight">
+        <p className="text-[11px] font-bold text-neutral-800">Google Reviews</p>
+        <p className="text-[10px] font-bold text-amber-500">★★★★★</p>
+      </div>
+    </div>);
+
+}
+
+function TrustpilotBadge() {
+  return (
+    <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2">
+      <svg width={16} height={16} viewBox="0 0 24 24" fill="#00b67a" aria-hidden="true">
+        <path d="M12 1.5l2.94 6.68 7.31.66-5.55 4.9 1.67 7.16L12 17.06l-6.37 3.84 1.67-7.16-5.55-4.9 7.31-.66z" />
+      </svg>
+      <div className="leading-tight">
+        <p className="text-[11px] font-extrabold text-neutral-800">Trustpilot</p>
+        <div className="flex gap-0.5">
+          {Array.from({ length: 5 }).map((_, index) =>
+          <span key={index} className="grid h-2.5 w-2.5 place-items-center bg-[#00b67a] text-[7px] text-white">★</span>
+          )}
+        </div>
+      </div>
+    </div>);
+
+}
+
 export function Footer() {
   const [showTop, setShowTop] = useState(false);
   const [email, setEmail] = useState('');
@@ -172,75 +219,135 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
-            <div className="lg:col-span-2">
-              <a href="#top" className="text-3xl font-extrabold tracking-tight">
-                NU<span className="text-brand-yellow">TYRE</span>
-                <small className="ml-1 text-[10px] tracking-[0.18em] text-gray-400">
-                  UK
-                </small>
+            className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+
+            <div>
+              <a href="#top" className="inline-flex items-center">
+                <img src="/lolo.png" alt="Nutyre" className="h-12 w-auto object-contain" />
               </a>
-              <p className="mt-4 max-w-sm leading-7 text-gray-400">
-                Premium tyres, simple booking and expert fitting throughout
-                Hertfordshire.
+              <h3 className="mt-8 font-extrabold text-brand-yellow">Download App</h3>
+              <div className="mt-4 flex flex-col gap-3">
+                <a href="#top" aria-label="Get it on Google Play">
+                  <img src="/googleplay.png" alt="Get it on Google Play" className="h-11 w-auto rounded-lg" />
+                </a>
+                <a href="#top" aria-label="Download on the App Store">
+                  <img src="/appstore.jpg" alt="Download on the App Store" className="h-11 w-auto rounded-lg" />
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-extrabold text-brand-yellow">Operations Office</h3>
+              <ul className="mt-4 space-y-4 text-sm text-gray-300">
+                <li className="flex items-start gap-3">
+                  <Building2Icon size={17} className="mt-0.5 shrink-0 text-gray-400" />
+                  132, Great North Road, Hatfield AL9 5JN
+                </li>
+                <li className="flex items-start gap-3">
+                  <PhoneIcon size={17} className="mt-0.5 shrink-0 text-gray-400" />
+                  <a href="tel:07311694631" className="transition hover:text-white">
+                    07311 694 631
+                  </a>
+                  <span className="text-gray-500">/</span>
+                  <a href="tel:01707912085" className="transition hover:text-white">
+                    01707 912 085
+                  </a>
+                </li>
+                <li className="flex items-start gap-3">
+                  <MailIcon size={17} className="mt-0.5 shrink-0 text-gray-400" />
+                  <a href="mailto:info@nutyre.co.uk" className="transition hover:text-white">
+                    info@nutyre.co.uk
+                  </a>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ClockIcon size={17} className="mt-0.5 shrink-0 text-gray-400" />
+                  <div className="space-y-0.5">
+                    <p>Monday – Friday: 8.30am – 7.00pm</p>
+                    <p>Saturday: 8.30am – 7.00pm</p>
+                    <p>Sunday: 9.00am – 5.00pm</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-extrabold text-brand-yellow">Useful Links</h3>
+              <ul className="mt-4 space-y-3">
+                {['Find a Fitter', 'Become a Fitter', 'Supplier Registration', 'Contact Us', 'About Us'].map(
+                  (item) =>
+                  <li key={item}>
+                      <a href="#top" className="text-sm text-gray-400 transition hover:text-white">
+                        {item}
+                      </a>
+                    </li>
+
+                )}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-extrabold text-brand-yellow">Payment Methods</h3>
+              <div className="mt-4 flex items-center gap-2">
+                <img src="/visa.png" alt="Visa" className="h-6 w-auto rounded bg-white p-1" />
+                <img src="/master.png" alt="Mastercard" className="h-6 w-auto rounded bg-white p-1" />
+                <img src="/american.png" alt="American Express" className="h-6 w-auto rounded bg-white p-1" />
+              </div>
+              <p className="mt-3 text-xs text-gray-400">
+                Powered by <span className="font-bold text-white">LLOYDS BANK</span> - CARDNET
               </p>
-              <div className="mt-6 flex gap-3">
+
+              <h3 className="mt-6 font-extrabold text-brand-yellow">Social Media</h3>
+              <div className="mt-4 flex gap-3">
+                <a
+                  aria-label="LinkedIn"
+                  href="#top"
+                  className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-brand-amber hover:text-brand-black">
+
+                  <LinkedinIcon size={16} />
+                </a>
                 <a
                   aria-label="Facebook"
                   href="#top"
-                  className="grid h-10 w-10 place-items-center rounded-full bg-white/10 hover:bg-brand-amber hover:text-brand-black">
-                  
-                  <FacebookIcon size={18} />
+                  className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-brand-amber hover:text-brand-black">
+
+                  <FacebookIcon size={16} />
                 </a>
                 <a
                   aria-label="Instagram"
                   href="#top"
-                  className="grid h-10 w-10 place-items-center rounded-full bg-white/10 hover:bg-brand-amber hover:text-brand-black">
-                  
-                  <InstagramIcon size={18} />
+                  className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-brand-amber hover:text-brand-black">
+
+                  <InstagramIcon size={16} />
+                </a>
+                <a
+                  aria-label="TikTok"
+                  href="#top"
+                  className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-brand-amber hover:text-brand-black">
+
+                  <TiktokIcon size={16} />
                 </a>
               </div>
-            </div>
-            {[
-            ['Explore', 'Tyres', 'Mobile fitting', 'Services', 'Offers'],
-            [
-            'Support',
-            'Contact us',
-            'FAQs',
-            'Track my order',
-            'Tyre guides'],
 
-            [
-            'Company',
-            'About Nutyre',
-            'Careers',
-            'Privacy policy',
-            'Terms & conditions']].
-
-            map(([title, ...items]) =>
-            <div key={title}>
-                <h3 className="font-extrabold text-brand-yellow capitalize">{title}</h3>
-                <ul className="mt-4 space-y-3">
-                  {items.map((item) =>
-                <li key={item}>
-                      <a
-                    href="#top"
-                    className="text-sm text-gray-400 transition hover:text-white">
-                    
-                        {item}
-                      </a>
-                    </li>
-                )}
-                </ul>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <GoogleReviewsBadge />
+                <TrustpilotBadge />
               </div>
-            )}
+            </div>
           </motion.div>
-          <div className="mt-12 flex flex-col justify-between gap-4 border-t border-white/10 pt-7 text-xs text-gray-500 sm:flex-row">
+
+          <div className="mt-12 flex flex-col justify-between gap-4 border-t border-white/10 pt-7 text-xs text-gray-500 sm:flex-row sm:items-center">
             <p>
-              © 2026 Nutyre UK. All rights reserved. Registered in England &
-              Wales.
+              © 2026 NUTYRE UK LTD. All rights reserved. Company registration
+              number 14795388. VAT number 454 1024 29.
             </p>
-            <p>Secure payments · VAT registered · ★ 4.8 Trustpilot</p>
+            <div className="flex gap-4">
+              <a href="#top" className="underline underline-offset-2 transition hover:text-white">
+                Terms & Conditions
+              </a>
+              <a href="#top" className="underline underline-offset-2 transition hover:text-white">
+                Privacy Policy
+              </a>
+            </div>
           </div>
         </div>
       </footer>
