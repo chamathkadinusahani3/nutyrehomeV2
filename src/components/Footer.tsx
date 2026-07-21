@@ -223,15 +223,33 @@ export function Footer() {
 
             <div>
               <a href="#top" className="inline-flex items-center">
-                <img src="/lolo.png" alt="Nutyre" className="h-12 w-auto object-contain" />
+                <img src="/logo.png" alt="Nutyre" className="h-12 w-auto object-contain" />
               </a>
               <h3 className="mt-8 font-extrabold text-brand-yellow">Download App</h3>
               <div className="mt-4 flex flex-col gap-3">
-                <a href="#top" aria-label="Get it on Google Play">
-                  <img src="/googleplay.png" alt="Get it on Google Play" className="h-11 w-auto rounded-lg" />
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.nutyre.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-bold transition hover:bg-white/10">
+
+                  <img src="/googleplay.png" alt="" aria-hidden="true" className="h-5 w-5" />
+                  <span>
+                    <span className="block text-[10px] font-normal text-gray-400">Get it on</span>
+                    Google Play
+                  </span>
                 </a>
-                <a href="#top" aria-label="Download on the App Store">
-                  <img src="/appstore.jpg" alt="Download on the App Store" className="h-11 w-auto rounded-lg" />
+                <a
+                  href="https://apps.apple.com/lk/app/nutyreuk/id6758754476"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-bold transition hover:bg-white/10">
+
+                  <img src="/appstore.jpg" alt="" aria-hidden="true" className="h-5 w-5 rounded-md" />
+                  <span>
+                    <span className="block text-[10px] font-normal text-gray-400">Download on the</span>
+                    App Store
+                  </span>
                 </a>
               </div>
             </div>
