@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRightIcon } from 'lucide-react';
 import { services } from './ShopSections';
+import { Footer } from './Footer';
 
 export function ServicesPage() {
   return (
@@ -73,6 +74,7 @@ export function ServicesPage() {
           })}
         </div>
       </section>
+      <Footer />
     </>);
 
 }

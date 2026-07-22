@@ -9,14 +9,28 @@ import {
   CheckCircle2Icon,
   CreditCardIcon,
   MapPinIcon,
+  PlusCircleIcon,
   UserIcon } from
 'lucide-react';
 import { services } from './ShopSections';
 
-const stepLabels = ['Vehicle', 'Schedule', 'Pricing', 'Your details', 'Payment'];
+const stepLabels = ['Vehicle', 'Extras', 'Schedule', 'Pricing', 'Your details', 'Payment'];
 
 const vehicleTypes = ['Car', 'SUV / 4x4', 'Van'];
-const timeSlots = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'];
+
+function buildTimeSlots(startHour: number, endHour: number) {
+  const slots: string[] = [];
+  for (let minutes = startHour * 60; minutes <= endHour * 60; minutes += 30) {
+    const hour24 = Math.floor(minutes / 60);
+    const minute = minutes % 60;
+    const period = hour24 >= 12 ? 'PM' : 'AM';
+    const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
+    slots.push(`${hour12}:${String(minute).padStart(2, '0')} ${period}`);
+  }
+  return slots;
+}
+
+const timeSlots = buildTimeSlots(9, 16.5);
 const currentYear = new Date().getFullYear();
 const years = Array.from({ length: 25 }, (_, i) => String(currentYear - i));
 const MOBILE_SURCHARGE = 20;
@@ -35,6 +49,7 @@ type FormState = {
   email: string;
   phone: string;
   payment: 'day' | 'online';
+  additionalServices: string[];
 };
 
 const initialForm: FormState = {
@@ -50,7 +65,8 @@ const initialForm: FormState = {
   name: '',
   email: '',
   phone: '',
-  payment: 'day'
+  payment: 'day',
+  additionalServices: []
 };
 
 export function BookingPage() {
@@ -89,6 +105,15 @@ export function BookingPage() {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
+  function toggleExtra(extraSlug: string) {
+    setForm((prev) => ({
+      ...prev,
+      additionalServices: prev.additionalServices.includes(extraSlug) ?
+      prev.additionalServices.filter((item) => item !== extraSlug) :
+      [...prev.additionalServices, extraSlug]
+    }));
+  }
+
   function goToStep(next: number) {
     setStep(next);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -104,8 +129,11 @@ export function BookingPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  const otherServices = services.filter((item) => item.slug !== service.slug);
+  const selectedExtras = otherServices.filter((item) => form.additionalServices.includes(item.slug));
+  const extrasTotal = selectedExtras.reduce((sum, item) => sum + item.price, 0);
   const surcharge = form.location === 'mobile' ? MOBILE_SURCHARGE : 0;
-  const total = service.price + surcharge;
+  const total = service.price + extrasTotal + surcharge;
 
   if (confirmed) {
     return (
@@ -136,6 +164,14 @@ export function BookingPage() {
                 <span className="font-bold text-gray-500">Service</span>
                 <span className="font-extrabold text-brand-black">{service.title}</span>
               </div>
+              {selectedExtras.length > 0 &&
+              <div className="flex items-start justify-between">
+                  <span className="font-bold text-gray-500">Extras</span>
+                  <span className="text-right font-extrabold text-brand-black">
+                    {selectedExtras.map((item) => item.title).join(', ')}
+                  </span>
+                </div>
+              }
               <div className="flex items-center justify-between">
                 <span className="font-bold text-gray-500">Vehicle</span>
                 <span className="font-extrabold text-brand-black">
@@ -303,6 +339,77 @@ export function BookingPage() {
           }
 
           {step === 2 &&
+          <div>
+              <div className="mb-2 flex items-center gap-2 text-brand-black">
+                <PlusCircleIcon size={20} className="text-brand-lemon" />
+                <h2 className="font-extrabold">Any additional services?</h2>
+              </div>
+              <p className="mb-5 text-sm text-gray-500">
+                While we're working on your {service.title.toLowerCase()}, would you like us to take care of anything else?
+              </p>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {otherServices.map((extra) => {
+                  const ExtraIcon = extra.icon;
+                  const isSelected = form.additionalServices.includes(extra.slug);
+                  return (
+                    <button
+                      key={extra.slug}
+                      type="button"
+                      onClick={() => toggleExtra(extra.slug)}
+                      aria-pressed={isSelected}
+                      className={`flex items-center gap-3 rounded-xl border-2 p-3 text-left transition ${
+                      isSelected ?
+                      'border-brand-yellow bg-brand-yellow/10' :
+                      'border-gray-200 hover:border-brand-light-gold'}`
+                      }>
+
+                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-brand-black text-white">
+                        <ExtraIcon size={18} strokeWidth={1.75} />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-sm font-extrabold capitalize text-brand-black">{extra.title}</span>
+                        <span className="block text-xs font-bold text-gray-500">+£{extra.price}</span>
+                      </span>
+                      <span
+                        className={`grid h-5 w-5 shrink-0 place-items-center rounded-full border-2 ${
+                        isSelected ? 'border-brand-yellow bg-brand-yellow' : 'border-gray-300'}`
+                        }>
+
+                        {isSelected && <CheckCircle2Icon size={13} className="text-brand-black" />}
+                      </span>
+                    </button>);
+
+                })}
+              </div>
+
+              <p className="mt-4 text-xs text-gray-500">
+                {form.additionalServices.length > 0 ?
+                `${form.additionalServices.length} extra service${form.additionalServices.length === 1 ? '' : 's'} added — no problem, skip this step if you'd rather not.` :
+                "No extras selected — that's fine, you can always add these another time."}
+              </p>
+
+              <div className="mt-8 flex gap-3">
+                <button
+                type="button"
+                onClick={() => goToStep(step - 1)}
+                className="rounded-xl border-2 border-gray-200 px-6 py-3.5 font-bold text-brand-black transition hover:border-brand-yellow">
+
+                  Back
+                </button>
+                <button
+                type="button"
+                onClick={() => goToStep(step + 1)}
+                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand-black py-3.5 font-extrabold uppercase tracking-wide text-white transition hover:bg-brand-amber">
+
+                  Continue
+                  <ArrowRightIcon size={16} />
+                </button>
+              </div>
+            </div>
+          }
+
+          {step === 3 &&
           <form onSubmit={handleStepSubmit}>
               <div className="mb-6 flex items-center gap-2 text-brand-black">
                 <MapPinIcon size={20} className="text-brand-lemon" />
@@ -393,7 +500,7 @@ export function BookingPage() {
             </form>
           }
 
-          {step === 3 &&
+          {step === 4 &&
           <div>
               <div className="mb-6 flex items-center gap-2 text-brand-black">
                 <CalendarCheckIcon size={20} className="text-brand-lemon" />
@@ -405,6 +512,12 @@ export function BookingPage() {
                   <span className="font-bold text-gray-600">{service.title}</span>
                   <span className="font-extrabold text-brand-black">£{service.price}</span>
                 </div>
+                {selectedExtras.map((extra) =>
+                <div key={extra.slug} className="flex items-center justify-between">
+                    <span className="font-bold text-gray-600 capitalize">{extra.title}</span>
+                    <span className="font-extrabold text-brand-black">£{extra.price}</span>
+                  </div>
+                )}
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-gray-600">
                     {form.location === 'garage' ? 'In-garage fitting' : 'Mobile call-out'}
@@ -443,7 +556,7 @@ export function BookingPage() {
             </div>
           }
 
-          {step === 4 &&
+          {step === 5 &&
           <form onSubmit={handleStepSubmit}>
               <div className="mb-6 flex items-center gap-2 text-brand-black">
                 <UserIcon size={20} className="text-brand-lemon" />
@@ -505,7 +618,7 @@ export function BookingPage() {
             </form>
           }
 
-          {step === 5 &&
+          {step === 6 &&
           <div>
               <div className="mb-6 flex items-center gap-2 text-brand-black">
                 <CreditCardIcon size={20} className="text-brand-lemon" />
@@ -551,6 +664,14 @@ export function BookingPage() {
                   <span className="text-gray-500">Service</span>
                   <span className="font-bold text-brand-black">{service.title}</span>
                 </div>
+                {selectedExtras.length > 0 &&
+                <div className="flex items-start justify-between">
+                    <span className="text-gray-500">Extras</span>
+                    <span className="text-right font-bold text-brand-black">
+                      {selectedExtras.map((item) => item.title).join(', ')}
+                    </span>
+                  </div>
+                }
                 <div className="flex items-center justify-between">
                   <span className="text-gray-500">Vehicle</span>
                   <span className="font-bold text-brand-black">

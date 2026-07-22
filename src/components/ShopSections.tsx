@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Footer } from './Footer';
 import { AppSection } from './AppSection';
 import {
   ArrowRightIcon,
@@ -407,7 +408,7 @@ export function ShopSections() {
     </div>
   </div>
 </section>
-
+<Footer />
     </main>);
 
 }

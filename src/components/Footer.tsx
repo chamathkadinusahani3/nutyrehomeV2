@@ -91,7 +91,7 @@ export function Footer() {
               [PhoneIcon, '01707 242 626', 'Mon–Sat, 8am–6pm'],
               [
               MailIcon,
-              'hello@nutyre.co.uk',
+              'info@nutyre.co.uk',
               "We'll reply within one working day"],
 
               [
@@ -203,7 +203,7 @@ export function Footer() {
               Find my tyres
             </a>
             <a
-              href="tel:01707242626"
+              href="tel:07311 694 631"
               className="rounded-xl border-2 border-brand-black px-6 py-4 font-extrabold text-brand-black">
 
               Call us today
@@ -306,6 +306,7 @@ export function Footer() {
             <div>
               <h3 className="font-extrabold text-brand-yellow">Payment Methods</h3>
               <div className="mt-4 flex items-center gap-2">
+                <img src="/paypal.png" alt="PayPal" className="h-6 w-auto rounded bg-white p-1" />
                 <img src="/visa.png" alt="Visa" className="h-6 w-auto rounded bg-white p-1" />
                 <img src="/master.png" alt="Mastercard" className="h-6 w-auto rounded bg-white p-1" />
                 <img src="/american.png" alt="American Express" className="h-6 w-auto rounded bg-white p-1" />

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
   ArrowRightIcon,
   CameraIcon,
@@ -162,7 +163,7 @@ export function HeroSearch() {
                       <select
                     required
                     defaultValue=""
-                    className="h-14 w-full rounded-xl border border-gray-200 bg-white px-3 text-center font-bold focus:border-brand-lemon focus:outline-none">
+                    className="h-14 w-full rounded-xl border border-gray-200 bg-white px-3 text-center font-bold text-gray-400 focus:border-brand-lemon focus:outline-none valid:text-brand-black">
                         <option value="" disabled>e.g. {field.example}</option>
                         {field.options.map((option) =>
                     <option key={option} value={option}>
@@ -236,6 +237,15 @@ export function HeroSearch() {
               }
             </form>
           </div>
+
+          <Link
+            to="/services"
+            className="mt-4 flex h-14 w-full items-center justify-center gap-2 rounded-xl border-2 border-white/25 bg-white/5 text-base font-extrabold text-white backdrop-blur transition hover:border-brand-yellow hover:bg-white/10 hover:text-brand-yellow focus:outline-none focus:ring-4 focus:ring-brand-yellow/30">
+
+            <WrenchIcon size={19} />
+            Service your vehicle
+            <ArrowRightIcon size={18} />
+          </Link>
 
           <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-xs font-semibold text-gray-200">
             <span className="flex items-center gap-1.5">
