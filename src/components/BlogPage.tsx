@@ -80,12 +80,7 @@ export function BlogPage() {
         </div>
       </nav>
 
-      <BlogHero
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-        onTagClick={handleTagClick} />
+      <BlogHero onTagClick={handleTagClick} />
 
 
       <FeaturedArticle post={featuredPost} />
