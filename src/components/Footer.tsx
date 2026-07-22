@@ -223,7 +223,7 @@ export function Footer() {
 
             <div>
               <a href="#top" className="inline-flex items-center">
-                <img src="/logo.png" alt="Nutyre" className="h-12 w-auto object-contain" />
+                <img src="/logo.png" alt="Nutyre" className="h-20 w-auto object-contain" />
               </a>
               <h3 className="mt-8 font-extrabold text-brand-yellow">Download App</h3>
               <div className="mt-4 flex flex-col gap-3">

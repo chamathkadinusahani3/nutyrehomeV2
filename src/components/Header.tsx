@@ -25,20 +25,17 @@ export function Header() {
       <div className="relative z-50 overflow-hidden bg-gradient-to-r from-brand-yellow via-brand-light-gold to-brand-amber text-brand-black">
         <div className="mx-auto flex h-11 max-w-7xl items-center gap-5 overflow-hidden px-4 text-xs font-bold uppercase tracking-[0.12em] sm:px-6">
           <span className="whitespace-nowrap">Buy with assurance</span>
-          <span className="hidden h-1 w-1 rounded-full bg-brand-black sm:block" />
-          <span className="whitespace-nowrap">Lifetime tyre guarantee</span>
           <span className="hidden h-1 w-1 rounded-full bg-brand-black md:block" />
           <span className="whitespace-nowrap">★★★★★ Rated Excellent 4.9/5</span>
           <span className="hidden h-1 w-1 rounded-full bg-brand-black lg:block" />
           <span className="hidden whitespace-nowrap lg:block">
-            
             mobile fitting · Same day fitting available
           </span>
           <a
             className="ml-auto whitespace-nowrap underline underline-offset-4"
-            href="tel:01707242626">
+            href="tel:07311 694 631">
             
-            Call 01707 242 626
+            Call 07311 694 631 
           </a>
         </div>
       </div>
@@ -61,7 +58,7 @@ export function Header() {
             className="flex items-center"
             aria-label="Nutyre home">
 
-            <img src="/logo.png" alt="Nutyre" className="h-12 w-auto object-contain" />
+            <img src="/logo.png" alt="Nutyre" className="h-16 w-auto object-contain" />
           </a>
 
           <div className="hidden items-center gap-6 lg:flex">
