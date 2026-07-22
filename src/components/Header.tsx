@@ -23,10 +23,10 @@ export function Header() {
   return (
     <>
       <div className="relative z-50 overflow-hidden bg-gradient-to-r from-brand-yellow via-brand-light-gold to-brand-amber text-brand-black">
-        <div className="mx-auto flex h-11 max-w-7xl items-center gap-5 overflow-hidden px-4 text-xs font-bold uppercase tracking-[0.12em] sm:px-6">
+        <div className="mx-auto flex h-auto min-h-11 max-w-7xl items-center gap-2 overflow-hidden px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.08em] sm:h-11 sm:gap-5 sm:px-6 sm:py-0 sm:text-xs sm:tracking-[0.12em]">
           <span className="whitespace-nowrap">Buy with assurance</span>
-          <span className="hidden h-1 w-1 rounded-full bg-brand-black md:block" />
-          <span className="whitespace-nowrap">★★★★★ Rated Excellent 4.9/5</span>
+          <span className="hidden h-1 w-1 rounded-full bg-brand-black sm:block" />
+          <span className="hidden whitespace-nowrap sm:block">★★★★★ Rated Excellent 4.9/5</span>
           <span className="hidden h-1 w-1 rounded-full bg-brand-black lg:block" />
           <span className="hidden whitespace-nowrap lg:block">
             mobile fitting · Same day fitting available
@@ -34,8 +34,8 @@ export function Header() {
           <a
             className="ml-auto whitespace-nowrap underline underline-offset-4"
             href="tel:07311 694 631">
-            
-            Call 07311 694 631 
+
+            Call 07311 694 631
           </a>
         </div>
       </div>
