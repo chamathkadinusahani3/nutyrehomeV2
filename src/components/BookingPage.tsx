@@ -30,7 +30,7 @@ function buildTimeSlots(startHour: number, endHour: number) {
   return slots;
 }
 
-const timeSlots = buildTimeSlots(8.5, 19);
+const timeSlots = buildTimeSlots(8.5, 18);
 const currentYear = new Date().getFullYear();
 const years = Array.from({ length: 25 }, (_, i) => String(currentYear - i));
 const MOBILE_SURCHARGE = 20;
