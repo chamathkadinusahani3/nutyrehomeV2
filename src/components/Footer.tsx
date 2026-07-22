@@ -88,7 +88,7 @@ export function Footer() {
             </p>
             <div className="mt-8 space-y-4">
               {[
-              [PhoneIcon, '01707 242 626', 'Mon–Sat, 8am–6pm'],
+              [PhoneIcon, '01707 242 626', 'Mon–Sat, 8.30am–7pm'],
               [
               MailIcon,
               'info@nutyre.co.uk',
@@ -280,8 +280,8 @@ export function Footer() {
                 <li className="flex items-start gap-3">
                   <ClockIcon size={17} className="mt-0.5 shrink-0 text-gray-400" />
                   <div className="space-y-0.5">
-                    <p>Monday – Friday: 8.30am – 7.00pm</p>
-                    <p>Saturday: 8.30am – 7.00pm</p>
+                    <p>Monday – Saturday: 8.30am – 7.00pm</p>
+                  
                     <p>Sunday: 9.00am – 5.00pm</p>
                   </div>
                 </li>
