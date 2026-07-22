@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRightIcon } from 'lucide-react';
+import { ArrowRightIcon, SearchIcon } from 'lucide-react';
 import { services } from './ShopSections';
 import { Footer } from './Footer';
 
@@ -74,6 +74,34 @@ export function ServicesPage() {
           })}
         </div>
       </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center justify-between gap-6 rounded-3xl bg-brand-black px-6 py-10 text-center sm:px-10 lg:flex-row lg:text-left">
+
+          <div>
+            <h2 className="font-display text-2xl font-extrabold text-white sm:text-3xl">
+              Are you looking for tyres?
+            </h2>
+            <p className="mt-2 max-w-xl text-neutral-300">
+              Search our full tyre range by registration or size and get
+              fitted in minutes.
+            </p>
+          </div>
+          <a
+            href="/#find-tyres"
+            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-brand-yellow px-7 py-4 font-extrabold uppercase tracking-wide text-brand-black transition hover:bg-brand-amber">
+
+            <SearchIcon size={18} />
+            Search tyres
+          </a>
+        </motion.div>
+      </section>
+
       <Footer />
     </>);
 
