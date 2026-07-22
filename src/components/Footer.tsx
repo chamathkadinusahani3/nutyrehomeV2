@@ -231,25 +231,17 @@ export function Footer() {
                   href="https://play.google.com/store/apps/details?id=com.nutyre.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-bold transition hover:bg-white/10">
+                  className="inline-block w-fit overflow-hidden rounded-lg border border-white/15 transition hover:opacity-90">
 
-                  <img src="/googleplay.png" alt="" aria-hidden="true" className="h-5 w-5" />
-                  <span>
-                    <span className="block text-[10px] font-normal text-gray-400">Get it on</span>
-                    Google Play
-                  </span>
+                  <img src="/playstoreapplogo.png" alt="Get it on Google Play" className="h-11 w-auto" />
                 </a>
                 <a
                   href="https://apps.apple.com/lk/app/nutyreuk/id6758754476"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-bold transition hover:bg-white/10">
+                  className="inline-block w-fit overflow-hidden rounded-lg border border-white/15 transition hover:opacity-90">
 
-                  <img src="/appstore.jpg" alt="" aria-hidden="true" className="h-5 w-5 rounded-md" />
-                  <span>
-                    <span className="block text-[10px] font-normal text-gray-400">Download on the</span>
-                    App Store
-                  </span>
+                  <img src="/appleapplogo.png" alt="Download on the App Store" className="h-11 w-auto" />
                 </a>
               </div>
             </div>
