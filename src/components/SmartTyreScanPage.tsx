@@ -214,7 +214,7 @@ export function SmartTyreScanPage() {
             <img
               src="/scanimage.png"
               alt="Example of a good tyre photo showing the size markings on the sidewall clearly, versus a bad photo where the markings aren't visible"
-              className="h-64 w-full object-cover sm:h-80" />
+              className="h-auto w-full object-contain" />
 
             <ScanOverlay active label="Point at the tyre sidewall" />
           </div>
