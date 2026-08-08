@@ -87,7 +87,7 @@ export function Footer() {
             </p>
             <div className="mt-8 space-y-4">
               {[
-              [PhoneIcon, '01707 242 626', 'Mon–Sat:8.30am–6pm, Sunday: 10.00am – 5.00pm'],
+              [PhoneIcon, '01707 912 085', 'Mon–Sat:8.30am–6pm, Sunday: 10.00am – 5.00pm'],
               [
               MailIcon,
               'info@nutyre.co.uk',
