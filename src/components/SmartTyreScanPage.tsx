@@ -3,19 +3,15 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   ArrowLeftIcon,
-  BellIcon,
   CameraIcon,
   CarFrontIcon,
   CheckCircle2Icon,
   ClipboardCheckIcon,
-  GaugeIcon,
-  HistoryIcon,
   MapPinIcon,
   RefreshCwIcon,
   ScanLineIcon,
   SearchIcon,
   ShieldCheckIcon,
-  SmartphoneIcon,
   SparklesIcon,
   TruckIcon,
   UsersIcon,
@@ -24,6 +20,7 @@ import {
 import { useSeo } from '../hooks/useSeo';
 import { Footer } from './Footer';
 import { ScanModal } from './scan/ScanModal';
+import { ScanOverlay } from './scan/ScanOverlay';
 import { TyreScanner } from './scan/TyreScanner';
 
 const steps = [
@@ -31,17 +28,6 @@ const steps = [
 { number: '2', title: 'Point at your tyre', text: 'Position the tyre sidewall inside the scan frame.', icon: ScanLineIcon },
 { number: '3', title: 'Let us scan', text: 'Keep your camera steady while the scanning system analyzes the image.', icon: SparklesIcon },
 { number: '4', title: 'Find your tyres', text: 'Review the detected information and browse matching tyres.', icon: SearchIcon }];
-
-
-const mobileCapabilities = [
-'Scan your car or tyre',
-'Save your vehicle profile',
-'Track tyre condition and usage',
-'Track tyre mileage and age',
-'Store full tyre history',
-'Get tyre replacement reminders',
-'Find matching replacement tyres',
-'Book tyre fitting in a tap'];
 
 
 const useCases = [
@@ -208,14 +194,30 @@ export function SmartTyreScanPage() {
 
       {/* How it works */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-yellow" />
-            How it works
-          </span>
-          <h2 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-brand-black sm:text-4xl">
-            How Smart Tyre Scan works
-          </h2>
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-yellow" />
+              How it works
+            </span>
+            <h2 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-brand-black sm:text-4xl">
+              How Smart Tyre Scan works
+            </h2>
+            <p className="mt-4 leading-relaxed text-gray-600">
+              Getting a good scan starts with a good photo — keep the tyre
+              size markings on the sidewall clearly in frame, like the
+              example shown here.
+            </p>
+          </div>
+
+          <div className="relative overflow-hidden rounded-3xl border border-gray-100 shadow-[0_24px_60px_rgba(72,53,0,0.14)]">
+            <img
+              src="/scanimage.png"
+              alt="Example of a good tyre photo showing the size markings on the sidewall clearly, versus a bad photo where the markings aren't visible"
+              className="h-64 w-full object-cover sm:h-80" />
+
+            <ScanOverlay active label="Point at the tyre sidewall" />
+          </div>
         </div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -261,10 +263,7 @@ export function SmartTyreScanPage() {
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mx-auto max-w-2xl text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-neutral-200">
-              <SmartphoneIcon size={13} className="text-brand-yellow" />
-              Concept — coming to the NUTYRE app
-            </span>
+            
             <h2 className="mt-5 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
               Take Smart Tyre Scan with you
             </h2>
@@ -273,101 +272,28 @@ export function SmartTyreScanPage() {
               of your everyday driving experience — scan, track and manage
               every tyre on your vehicle from your pocket.
             </p>
+
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="https://apps.apple.com/lk/app/nutyreuk/id6758754476"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 rounded-xl bg-white px-8 py-4 font-bold text-neutral-950 transition-all duration-200 hover:bg-neutral-100 hover:shadow-lg">
+
+                <img src="/appstore.jpg" alt="" aria-hidden="true" className="h-6 w-6 rounded-md" />
+                Download on App Store
+              </a>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.nutyre.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/80 px-8 py-4 font-bold text-white backdrop-blur-sm transition-all duration-200 hover:border-amber-500/50 hover:bg-neutral-800">
+
+                <img src="/googleplay.png" alt="" aria-hidden="true" className="h-6 w-6" />
+                Get it on Google Play
+              </a>
+            </div>
           </div>
-
-          <div className="mt-14 grid items-start gap-10 lg:grid-cols-2">
-            {/* Vehicle profile mock */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-
-              <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400">My vehicle</p>
-              <h3 className="mt-1 font-display text-xl font-extrabold text-white">BMW 3 Series</h3>
-              <p className="text-sm text-neutral-400">Registration: AB12 XYZ</p>
-
-              <p className="mt-6 text-[11px] font-bold uppercase tracking-widest text-neutral-400">Current tyres</p>
-              <div className="mt-3 grid grid-cols-2 gap-3">
-                {['Front left', 'Front right', 'Rear left', 'Rear right'].map((position) =>
-                <div key={position} className="rounded-xl border border-white/10 bg-white/5 px-3 py-3">
-                    <p className="text-[10px] font-bold uppercase tracking-wide text-neutral-400">{position}</p>
-                    <p className="mt-0.5 font-mono text-sm font-extrabold text-white">205/55 R16</p>
-                  </div>
-                )}
-              </div>
-
-              <div className="mt-6 flex flex-wrap gap-2.5">
-                <span className="inline-flex items-center gap-1.5 rounded-xl bg-brand-yellow px-4 py-2.5 text-xs font-extrabold text-brand-black">
-                  <ScanLineIcon size={14} />
-                  Scan tyres
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-xl border border-white/20 px-4 py-2.5 text-xs font-extrabold text-white">
-                  <GaugeIcon size={14} />
-                  Track tyre usage
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Tyre health mock */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-
-              <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400">Tyre health</p>
-              <div className="mt-3 space-y-2.5">
-                {[
-                { position: 'Front left', status: 'Good', color: 'bg-emerald-500' },
-                { position: 'Front right', status: 'Good', color: 'bg-emerald-500' },
-                { position: 'Rear left', status: 'Monitor', color: 'bg-amber-500' },
-                { position: 'Rear right', status: 'Good', color: 'bg-emerald-500' }].
-                map((tyre) =>
-                <div key={tyre.position} className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-                    <span className="text-sm font-semibold text-neutral-200">{tyre.position}</span>
-                    <span className="flex items-center gap-1.5 text-xs font-extrabold text-white">
-                      <span className={`h-2 w-2 rounded-full ${tyre.color}`} />
-                      {tyre.status}
-                    </span>
-                  </div>
-                )}
-              </div>
-              <div className="mt-5 flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-                <BellIcon size={16} className="shrink-0 text-brand-yellow" />
-                <p className="text-xs font-semibold text-neutral-300">
-                  Next inspection reminder: 1,200 miles
-                </p>
-              </div>
-              <div className="mt-3 flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-                <HistoryIcon size={16} className="shrink-0 text-brand-yellow" />
-                <p className="text-xs font-semibold text-neutral-300">
-                  Full fitting &amp; rotation history stored per tyre
-                </p>
-              </div>
-            </motion.div>
-          </div>
-
-          <motion.ul
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-4">
-
-            {mobileCapabilities.map((capability) =>
-            <li key={capability} className="flex items-start gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-xs font-semibold text-neutral-200">
-                <CheckCircle2Icon size={15} className="mt-0.5 shrink-0 text-brand-yellow" />
-                {capability}
-              </li>
-            )}
-          </motion.ul>
-          <p className="mx-auto mt-6 max-w-2xl text-center text-xs leading-relaxed text-neutral-500">
-            These mobile app features are a future concept and are not yet
-            available — they illustrate where Smart Tyre Scan is heading.
-          </p>
         </div>
       </section>
 
