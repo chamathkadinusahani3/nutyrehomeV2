@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRightIcon, ScanLineIcon, ShieldCheckIcon, SparklesIcon } from 'lucide-react';
+import { ArrowRightIcon, ScaleIcon, ScanLineIcon, ShieldCheckIcon, SparklesIcon } from 'lucide-react';
 import { ScanOverlay } from './scan/ScanOverlay';
 import { ScanModal } from './scan/ScanModal';
 
@@ -50,7 +50,8 @@ export function SmartTyreScanSection() {
                 <SparklesIcon size={12} className="text-brand-yellow" />
                 Latest innovation
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-gray-500">
+              <span className="inline-flex items-center gap-1.5 rounded-full border-2 border-amber-300 bg-amber-50 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-wide text-amber-800">
+                <ScaleIcon size={12} className="text-amber-600" />
                 Patent pending
               </span>
             </div>

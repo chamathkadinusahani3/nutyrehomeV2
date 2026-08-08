@@ -6,9 +6,11 @@ import {
   CameraIcon,
   CarFrontIcon,
   CheckCircle2Icon,
+  ChevronDownIcon,
   ClipboardCheckIcon,
   MapPinIcon,
   RefreshCwIcon,
+  ScaleIcon,
   ScanLineIcon,
   SearchIcon,
   ShieldCheckIcon,
@@ -63,6 +65,37 @@ const useCases = [
 }];
 
 
+const faqs = [
+{
+  question: 'How do I scan my tyre?',
+  answer: 'Open Smart Tyre Scan, allow camera access, point your phone at the tyre sidewall, and keep the tyre size marking clearly inside the scan frame.'
+},
+{
+  question: 'Where can I find my tyre size?',
+  answer: 'The tyre size is usually printed on the tyre sidewall, for example 205/55 R16.'
+},
+{
+  question: "What if I don't know my tyre size?",
+  answer: 'No problem. Smart Tyre Scan is designed to help identify your tyre size using your phone camera.'
+},
+{
+  question: "What if the scanner can't read my tyre?",
+  answer: 'Make sure the tyre marking is clean, visible, and well lit. Keep your phone steady and try scanning again.'
+},
+{
+  question: 'Can I use Smart Tyre Scan on my phone?',
+  answer: 'Yes. Simply open the scanner on your smartphone and use your camera to scan the tyre.'
+},
+{
+  question: 'What happens after my tyre is scanned?',
+  answer: 'The detected tyre information can be used to help you find suitable replacement tyres.'
+},
+{
+  question: 'Can I still search by registration number or tyre size?',
+  answer: "Yes. Smart Tyre Scan is an additional option. You can still use NUTYRE's registration and tyre-size search."
+}];
+
+
 function DemoSection() {
   const [demoStarted, setDemoStarted] = useState(false);
 
@@ -105,6 +138,7 @@ function DemoSection() {
 
 export function SmartTyreScanPage() {
   const [scanOpen, setScanOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useSeo({
     title: 'Smart Tyre Scan | NUTYRE UK',
@@ -136,7 +170,8 @@ export function SmartTyreScanPage() {
               <SparklesIcon size={12} className="text-brand-yellow" />
               Latest innovation
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-neutral-400">
+            <span className="inline-flex items-center gap-1.5 rounded-full border-2 border-brand-yellow/60 bg-brand-yellow/15 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-wide text-brand-yellow">
+              <ScaleIcon size={12} className="text-brand-yellow" />
               Patent pending
             </span>
           </div>
@@ -409,6 +444,53 @@ export function SmartTyreScanPage() {
               </motion.div>
             )}
           </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
+        <div className="text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-yellow" />
+            Need to know
+          </span>
+          <h2 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-brand-black sm:text-4xl">
+            Frequently asked questions
+          </h2>
+        </div>
+
+        <div className="mt-10 space-y-3">
+          {faqs.map((faq, index) => {
+            const isOpen = openFaq === index;
+            return (
+              <motion.div
+                key={faq.question}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
+
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(isOpen ? null : index)}
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
+
+                  <span className="font-bold text-brand-black">{faq.question}</span>
+                  <ChevronDownIcon
+                    size={18}
+                    className={`shrink-0 text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-180 text-brand-amber' : ''}`} />
+
+                </button>
+                {isOpen &&
+                <p className="px-5 pb-5 leading-relaxed text-gray-600">
+                    {faq.answer}
+                  </p>
+                }
+              </motion.div>);
+
+          })}
         </div>
       </section>
 

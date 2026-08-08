@@ -4,7 +4,6 @@ import { Header } from './components/Header';
 import { HeroSearch } from './components/HeroSearch';
 import { ShopSections } from './components/ShopSections';
 import { TrustSections } from './components/TrustSections';
-import { SmartTyreScanSection } from './components/SmartTyreScanSection';
 import { SmartTyreScanPage } from './components/SmartTyreScanPage';
 import { BrandsPage } from './components/BrandsPage';
 import { ServicesPage } from './components/ServicesPage';
@@ -22,7 +21,6 @@ function HomePage() {
   return (
     <>
       <HeroSearch />
-      <SmartTyreScanSection />
       <TrustSections />
       <ShopSections />
     </>);
