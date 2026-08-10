@@ -22,7 +22,7 @@ function HomePage() {
     <>
       <HeroSearch />
       <TrustSections />
-      <ShopSections />
+      <ShopSections  />
     </>);
 
 }
