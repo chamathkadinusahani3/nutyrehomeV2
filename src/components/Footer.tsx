@@ -250,8 +250,13 @@ export function Footer() {
               <ul className="mt-4 space-y-4 text-sm text-gray-300">
                 <li className="flex items-start gap-3">
                   <Building2Icon size={17} className="mt-0.5 shrink-0 text-gray-400" />
-                  132, Great North Road, Hatfield <span className="whitespace-nowrap">AL9 5JN</span>
+                    <span>
+                      132, Great North Road, Hatfield
+                      <br />
+                      <span className="whitespace-nowrap">AL9 5JN</span>
+                    </span>
                 </li>
+                <li></li>
                 <li className="flex items-start gap-3">
                   <PhoneIcon size={17} className="mt-0.5 shrink-0 text-gray-400" />
                   <a href="tel:07311694631" className="transition hover:text-white">
