@@ -87,7 +87,7 @@ export function Footer() {
             </p>
             <div className="mt-8 space-y-4">
               {[
-              [PhoneIcon, '01707 912 085', 'Mon–Sat:8.30am–6pm, Sunday: 10.00am – 5.00pm'],
+              [PhoneIcon, '01707 912 085', 'Mon–Sat: 8.30am–6pm, Sunday: 10.00am–5.00pm'],
               [
               MailIcon,
               'info@nutyre.co.uk',
@@ -250,7 +250,7 @@ export function Footer() {
               <ul className="mt-4 space-y-4 text-sm text-gray-300">
                 <li className="flex items-start gap-3">
                   <Building2Icon size={17} className="mt-0.5 shrink-0 text-gray-400" />
-                  132, Great North Road, Hatfield AL9 5JN
+                  132, Great North Road, Hatfield <span className="whitespace-nowrap">AL9 5JN</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <PhoneIcon size={17} className="mt-0.5 shrink-0 text-gray-400" />
@@ -271,8 +271,8 @@ export function Footer() {
                 <li className="flex items-start gap-3">
                   <ClockIcon size={17} className="mt-0.5 shrink-0 text-gray-400" />
                   <div className="space-y-0.5">
-                    <p>Monday – Saturday: 8.30am – 6.00pm</p>
-                    <p>Sunday: 10.00am – 5.00pm</p>
+                    <p>Monday – Saturday: <span className="whitespace-nowrap">8.30am – 6.00pm</span></p>
+                    <p>Sunday: <span className="whitespace-nowrap">10.00am – 5.00pm</span></p>
                   </div>
                 </li>
               </ul>
