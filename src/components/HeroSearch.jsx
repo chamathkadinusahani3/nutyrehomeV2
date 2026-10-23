@@ -125,10 +125,22 @@ export function HeroSearch() {
           </Link>
 
           <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-xs font-semibold text-gray-200">
-            <span className="flex items-center gap-1.5">
+            <a
+              href="https://www.trustpilot.com/review/nutyre.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 transition hover:text-brand-yellow">
               <StarIcon className="fill-brand-yellow text-brand-lemon" size={16} />{' '}
               4.8 on Trustpilot
-            </span>
+            </a>
+            <a
+              href="https://www.google.com/search?q=nutyre+reviews"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 transition hover:text-brand-yellow">
+              <StarIcon className="fill-brand-yellow text-brand-lemon" size={16} />{' '}
+              5.0 on Google
+            </a>
             <span className="flex items-center gap-1.5">
               <ShieldCheckIcon className="text-brand-lemon" size={16} /> Lifetime
               guarantee

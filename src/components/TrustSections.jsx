@@ -27,21 +27,24 @@ const fittingOptions = [
   text: 'We fit at home, work or roadside.',
   icon: TruckIcon,
   color: 'bg-brand-cream',
-  action: 'Book mobile fitting'
+  action: 'Book mobile fitting',
+  href: 'https://nutyre.co.uk/mobile-tyre-fitting-service'
 },
 {
   title: 'Garage fitting',
   text: '100+ trusted local fitting partners.',
   icon: CarFrontIcon,
   color: 'bg-gray-100',
-  action: 'Find a garage'
+  action: 'Find a garage',
+  href: 'https://nutyre.co.uk/garage-tyre-fitting-service'
 },
 {
   title: 'Same day fitting',
   text: 'Need tyres today? We can help.',
   icon: Clock3Icon,
   color: 'bg-brand-amber/20',
-  action: 'Check availability'
+  action: 'Check availability',
+  href: 'https://nutyre.co.uk/emergency-tyre-repair'
 }];
 
 const faq = [
@@ -219,7 +222,8 @@ export function TrustSections() {
             {/* Micro-interactive Text Link */}
             <div className="mt-8">
               <a
-                href="#find-tyres"
+                href={option.href || '#find-tyres'}
+                {...option.href && { target: '_blank', rel: 'noopener noreferrer' }}
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-900 transition-all duration-200 group-hover:text-amber-700"
               >
                 <span>{option.action}</span>

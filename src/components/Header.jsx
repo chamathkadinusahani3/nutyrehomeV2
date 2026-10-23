@@ -86,12 +86,15 @@ export function Header() {
 
               <SearchIcon size={20} />
             </button>
-            <button
-              aria-label="Account"
+            <a
+              href="https://nutyre.co.uk/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Log in"
               className="rounded-full p-2 text-white transition hover:bg-white/10">
 
               <UserRoundIcon size={20} />
-            </button>
+            </a>
             <button
               aria-label="Wishlist"
               className="rounded-full p-2 text-white transition hover:bg-white/10">

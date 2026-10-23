@@ -24,7 +24,12 @@ function TiktokIcon({ size = 18 }) {
 
 function GoogleReviewsBadge() {
   return (
-    <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2">
+    <a
+      href="https://www.google.com/search?q=nutyre+reviews"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Read Nutyre reviews on Google"
+      className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 transition hover:opacity-90">
       <svg width={18} height={18} viewBox="0 0 24 24" aria-hidden="true">
         <path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.63h6.47a5.54 5.54 0 0 1-2.4 3.63v3h3.87c2.27-2.09 3.58-5.17 3.58-8.81z" />
         <path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.94-2.92l-3.87-3c-1.08.72-2.45 1.15-4.07 1.15-3.13 0-5.78-2.11-6.73-4.96H1.28v3.11A12 12 0 0 0 12 24z" />
@@ -33,15 +38,22 @@ function GoogleReviewsBadge() {
       </svg>
       <div className="leading-tight">
         <p className="text-[11px] font-bold text-neutral-800">Google Reviews</p>
-        <p className="text-[10px] font-bold text-amber-500">★★★★★</p>
+        <p className="text-[10px] font-bold text-amber-500">
+          ★★★★★ <span className="text-neutral-800">5.0</span>
+        </p>
       </div>
-    </div>);
+    </a>);
 
 }
 
 function TrustpilotBadge() {
   return (
-    <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2">
+    <a
+      href="https://www.trustpilot.com/review/nutyre.co.uk"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Read Nutyre reviews on Trustpilot"
+      className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 transition hover:opacity-90">
       <svg width={16} height={16} viewBox="0 0 24 24" fill="#00b67a" aria-hidden="true">
         <path d="M12 1.5l2.94 6.68 7.31.66-5.55 4.9 1.67 7.16L12 17.06l-6.37 3.84 1.67-7.16-5.55-4.9 7.31-.66z" />
       </svg>
@@ -53,7 +65,7 @@ function TrustpilotBadge() {
           )}
         </div>
       </div>
-    </div>);
+    </a>);
 
 }
 
@@ -286,14 +298,21 @@ export function Footer() {
             <div>
               <h3 className="font-extrabold text-brand-yellow">Useful Links</h3>
               <ul className="mt-4 space-y-3">
-                {['Find a Fitter', 'Become a Fitter', 'Supplier Registration', 'Contact Us', 'About Us'].map(
-                  (item) =>
-                  <li key={item}>
-                      <a href="#top" className="text-sm text-gray-400 transition hover:text-white">
-                        {item}
+                {[
+                { label: 'Find a Fitter', href: 'https://nutyre.co.uk/find-a-fitter' },
+                { label: 'Become a Fitter', href: 'https://nutyre.co.uk/fitter-registration-page' },
+                { label: 'Supplier Registration', href: 'https://nutyre.co.uk/supplier-registration-form' },
+                { label: 'Contact Us', href: 'https://nutyre.co.uk/contact' },
+                { label: 'About Us', href: 'https://nutyre.co.uk/about-us' }].
+                map((item) =>
+                <li key={item.label}>
+                      <a
+                    href={item.href}
+                    {...item.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' }}
+                    className="text-sm text-gray-400 transition hover:text-white">
+                        {item.label}
                       </a>
                     </li>
-
                 )}
               </ul>
             </div>
@@ -314,28 +333,36 @@ export function Footer() {
               <div className="mt-4 flex gap-3">
                 <a
                   aria-label="LinkedIn"
-                  href="#top"
+                  href="https://www.linkedin.com/company/nutyre-uk-ltd"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-brand-amber hover:text-brand-black">
 
                   <LinkedinIcon size={16} />
                 </a>
                 <a
                   aria-label="Facebook"
-                  href="#top"
+                  href="https://www.facebook.com/people/Nutyre/100092560497928/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-brand-amber hover:text-brand-black">
 
                   <FacebookIcon size={16} />
                 </a>
                 <a
                   aria-label="Instagram"
-                  href="#top"
+                  href="https://www.instagram.com/nutyre_uk_ltd"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-brand-amber hover:text-brand-black">
 
                   <InstagramIcon size={16} />
                 </a>
                 <a
                   aria-label="TikTok"
-                  href="#top"
+                  href="https://www.tiktok.com/@nutyre.ukltd"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-brand-amber hover:text-brand-black">
 
                   <TiktokIcon size={16} />
@@ -355,10 +382,18 @@ export function Footer() {
               number 14795388. VAT number 454 1024 29.
             </p>
             <div className="flex gap-4">
-              <a href="#top" className="underline underline-offset-2 transition hover:text-white">
+              <a
+                href="https://nutyre.co.uk/terms-and-conditions/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 transition hover:text-white">
                 Terms & Conditions
               </a>
-              <a href="#top" className="underline underline-offset-2 transition hover:text-white">
+              <a
+                href="https://nutyre.co.uk/privacy-policy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 transition hover:text-white">
                 Privacy Policy
               </a>
             </div>
